@@ -11,6 +11,9 @@ export default {
 
     theme: {
         extend: {
+            colors:{
+                customPink: '#e91f64',
+              },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
