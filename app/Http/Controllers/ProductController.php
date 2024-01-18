@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 
 use Illuminate\Http\Request;
-
+use PDF;
 class ProductController extends Controller
 {
      //
@@ -49,6 +49,19 @@ class ProductController extends Controller
         ]);
         $product->update($data);
 
-        return redirect(route('product.index'))->with('success','Product updated successfully');
+        return redirect(route('product.index'));
+    }
+
+    public function delete(Product $product){
+        $product->delete();
+        return redirect(route('product.index'));
+
+    }
+    public function downloadPdf(Product $product){
+
+        $pdf = PDF::loadView('products.pdf', ['product' => $product]);
+
+        return $pdf -> download('product_details.pdf');
+
     }
 }
